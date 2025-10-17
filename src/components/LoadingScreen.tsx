@@ -6,7 +6,6 @@ import {
   TrendingUp,
   PieChart,
   Activity,
-  Zap,
   Brain,
   Cpu,
 } from "lucide-react";
@@ -134,7 +133,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
               Data Analytics Dashboard
             </h1>
             <p className="text-lg text-white/80">
-              Loading Luan Tran's Portfolio
+              Loading Luan Tran&apos;s Portfolio
             </p>
           </div>
 

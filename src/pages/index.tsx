@@ -7,11 +7,9 @@ import {
   Mail,
   Phone,
   MapPin,
-  Code,
   Database,
   BarChart3,
   Brain,
-  Heart,
   Sparkles,
   Download,
   ExternalLink,
@@ -45,7 +43,7 @@ export default function Home() {
         <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
           {/* Floating data visualization elements */}
           <div className="pointer-events-none absolute inset-0">
-            {[...Array(12)].map((_, i) => (
+            {Array.from({ length: 12 }).map((_, i) => (
               <motion.div
                 key={i}
                 className="absolute opacity-10"
@@ -164,7 +162,7 @@ export default function Home() {
                     👨‍💻📊
                   </motion.div>
                   <h1 className="mb-6 text-5xl font-bold text-white lg:text-7xl">
-                    Hi, I'm{" "}
+                    Hi, I&apos;m{" "}
                     <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                       Luan
                     </span>
@@ -175,8 +173,9 @@ export default function Home() {
                       Data Engineer
                     </span>{" "}
                     who loves turning complex data into beautiful insights. When
-                    I'm not building data pipelines, you'll find me analyzing
-                    trends and exploring the latest in AI and machine learning.
+                    I&apos;m not building data pipelines, you&apos;ll find me
+                    analyzing trends and exploring the latest in AI and machine
+                    learning.
                   </p>
                   <div className="mb-8 flex flex-wrap gap-4">
                     <div className="glass-badge">
@@ -766,10 +765,10 @@ export default function Home() {
                 className="mb-16 text-center"
               >
                 <h2 className="mb-6 text-4xl font-bold text-white lg:text-6xl">
-                  Let's Connect
+                  Let&apos;s Connect
                 </h2>
                 <p className="mx-auto max-w-3xl text-xl text-white/80">
-                  Ready to turn data into insights? Let's build something
+                  Ready to turn data into insights? Let&apos;s build something
                   amazing together! 🐱
                 </p>
               </motion.div>
