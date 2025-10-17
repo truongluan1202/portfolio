@@ -232,7 +232,7 @@ export default function Home() {
                         >
                           <div className="mb-4 flex items-center gap-3">
                             <Server className="h-8 w-8 text-blue-400" />
-                            <h3 className="text-sm font-bold text-white">
+                            <h3 className="text-md font-bold text-white">
                               Data Engineering
                             </h3>
                           </div>
@@ -281,7 +281,7 @@ export default function Home() {
                         >
                           <div className="flex items-center gap-2 p-5 pb-2">
                             <BarChart3 className="h-12 w-12 text-green-400" />
-                            <h3 className="text-sm font-bold text-white">
+                            <h3 className="text-md font-bold text-white">
                               Analytics & Visualization
                             </h3>
                           </div>
@@ -388,7 +388,7 @@ export default function Home() {
                         className="glass-card p-5"
                       >
                         <div className="mb-4 flex items-center gap-3">
-                          <Cpu className="h-5 w-5 text-purple-400" />
+                          <Cpu className="h-7 w-7 text-purple-400" />
                           <h3 className="text-lg font-bold text-white">
                             AI & Machine Learning
                           </h3>
