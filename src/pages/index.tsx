@@ -406,7 +406,12 @@ export default function Home() {
                                         ? point.y + 30
                                         : point.y - 25
                                     }
-                                    textAnchor={point.textAnchor}
+                                    textAnchor={
+                                      point.textAnchor as
+                                        | "start"
+                                        | "middle"
+                                        | "end"
+                                    }
                                     className="fill-white/80 text-xs"
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
@@ -425,7 +430,12 @@ export default function Home() {
                                         ? point.y + 45
                                         : point.y - 10
                                     }
-                                    textAnchor={point.textAnchor}
+                                    textAnchor={
+                                      point.textAnchor as
+                                        | "start"
+                                        | "middle"
+                                        | "end"
+                                    }
                                     className="fill-green-400 text-xs"
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
@@ -764,7 +774,7 @@ export default function Home() {
                         >
                           <div className="mb-3 flex items-start justify-between">
                             <div>
-                              <h3 className="mb-1 text-lg font-bold text-white">
+                              <h3 className="mb-1 text-xl font-bold text-white">
                                 Co-Founder
                               </h3>
                               <p className="text-sm text-purple-400">
@@ -812,7 +822,7 @@ export default function Home() {
                         >
                           <div className="mb-3 flex items-start justify-between">
                             <div>
-                              <h3 className="mb-1 text-lg font-bold text-white">
+                              <h3 className="mb-1 text-xl font-bold text-white">
                                 Data Science Intern
                               </h3>
                               <p className="text-sm text-purple-400">
@@ -874,7 +884,7 @@ export default function Home() {
                         >
                           <div className="mb-3 flex items-start justify-between">
                             <div>
-                              <h3 className="mb-1 text-lg font-bold text-white">
+                              <h3 className="mb-1 text-xl font-bold text-white">
                                 Research Assistant – Data Analyst
                               </h3>
                               <p className="text-sm text-purple-400">
