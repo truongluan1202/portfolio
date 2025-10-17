@@ -295,9 +295,28 @@
   transform: translateY(-1px);
 }
 
-/* Smooth scrolling */
-html {
+/* Smooth scrolling and prevent white space */
+html,
+body {
   scroll-behavior: smooth;
+  background-color: #111827; /* gray-900 */
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+/* Prevent white space on scroll */
+body {
+  min-height: 100vh;
+  background-color: #111827; /* gray-900 */
+  background-attachment: fixed;
+}
+
+/* Ensure no extra space at bottom */
+#__next {
+  min-height: 100vh;
+  background-color: #111827; /* gray-900 */
 }
 
 /* Custom scrollbar */

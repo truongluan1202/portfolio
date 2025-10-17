@@ -14,8 +14,6 @@ import {
   Sparkles,
   Download,
   ExternalLink,
-  Menu,
-  X,
   Code,
   Server,
   Cpu,
@@ -23,7 +21,6 @@ import {
 import LoadingScreen from "~/components/LoadingScreen";
 
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   return (
@@ -44,7 +41,16 @@ export default function Home() {
 
       {/* Main Content - Only show after loading */}
       {!isLoading && (
-        <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+        <div
+          className="relative min-h-screen overflow-hidden bg-gray-900"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: "50px 50px",
+          }}
+        >
           {/* Floating data visualization elements */}
           <div className="pointer-events-none absolute inset-0">
             {Array.from({ length: 12 }).map((_, i) => (
@@ -77,7 +83,17 @@ export default function Home() {
           </div>
 
           {/* Navigation */}
-          <nav className="fixed top-0 z-50 w-full p-6">
+          <nav
+            className="fixed top-0 z-50 w-full border-white/10 p-6 backdrop-blur-sm"
+            style={{
+              backgroundImage: `
+                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: "50px 50px",
+              backgroundColor: "rgba(17, 24, 39, 0.95)", // gray-900 with transparency
+            }}
+          >
             <motion.div
               className="mx-auto flex max-w-7xl items-center justify-between"
               initial={{ y: -100 }}
@@ -85,8 +101,13 @@ export default function Home() {
               transition={{ duration: 0.8 }}
             >
               <div className="flex items-center gap-2 text-2xl font-bold text-white">
-                <Code className="h-8 w-8 text-purple-400" />
-                Luan Tran
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                >
+                  <Code className="h-8 w-8 text-purple-400" />
+                </motion.div>
+                Portfolio
               </div>
               <div className="hidden gap-8 md:flex">
                 {["About", "Experience", "Projects", "Skills", "Contact"].map(
@@ -101,62 +122,22 @@ export default function Home() {
                   ),
                 )}
               </div>
-              <button
-                className="glass-icon-button md:hidden"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              >
-                {mobileMenuOpen ? (
-                  <X className="h-6 w-6" />
-                ) : (
-                  <Menu className="h-6 w-6" />
-                )}
-              </button>
+              <div className="w-32"></div>
             </motion.div>
-
-            {/* Mobile Menu */}
-            <AnimatePresence>
-              {mobileMenuOpen && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="glass-card mt-4 p-4 md:hidden"
-                >
-                  <div className="flex flex-col gap-4">
-                    {[
-                      "About",
-                      "Experience",
-                      "Projects",
-                      "Skills",
-                      "Contact",
-                    ].map((item) => (
-                      <a
-                        key={item}
-                        href={`#${item.toLowerCase()}`}
-                        className="py-2 text-white/80 transition-colors duration-300 hover:text-white"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {item}
-                      </a>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
           </nav>
 
           {/* Main Content Layout */}
           <div className="px-8 pt-24">
-            <div className="mx-auto max-w-7xl">
+            <div className="mx-30 max-w-7xl">
               {/* Hero Section - Split into two sides */}
               <section id="about" className="mb-20">
-                <div className="grid gap-12 lg:grid-cols-3">
+                <div className="grid gap-3 lg:grid-cols-3">
                   {/* Left Side - Profile Card */}
                   <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="space-y-8 lg:mt-8"
+                    className="mr-0 space-y-8 lg:mt-8"
                   >
                     <div className="glass-card p-6 text-center">
                       <div className="mx-auto mb-4 h-48 w-48 overflow-hidden rounded-full bg-gradient-to-br from-purple-400 to-pink-400">
@@ -170,7 +151,7 @@ export default function Home() {
                         />
                       </div>
                       <h3 className="mb-3 text-xl font-bold text-white">
-                        Data Engineer & Cat Enthusiast
+                        Data Engineer & Cat Lover
                       </h3>
                       <div className="space-y-2 text-sm text-white/80">
                         <div className="flex items-center justify-center gap-2">
@@ -237,10 +218,6 @@ export default function Home() {
                         <h2 className="mb-4 text-2xl font-bold text-white">
                           Skills
                         </h2>
-                        <p className="mb-6 text-sm text-white/80">
-                          A comprehensive toolkit for building data-driven
-                          solutions
-                        </p>
                       </div>
 
                       {/* First Row - Data Engineering & Analytics */}
@@ -254,8 +231,8 @@ export default function Home() {
                           className="glass-card p-5"
                         >
                           <div className="mb-4 flex items-center gap-3">
-                            <Server className="h-5 w-5 text-blue-400" />
-                            <h3 className="text-lg font-bold text-white">
+                            <Server className="h-8 w-8 text-blue-400" />
+                            <h3 className="text-sm font-bold text-white">
                               Data Engineering
                             </h3>
                           </div>
@@ -279,7 +256,9 @@ export default function Home() {
                                   <motion.div
                                     className="glass-progress-fill bg-gradient-to-r from-blue-400 to-blue-600"
                                     initial={{ width: 0 }}
-                                    whileInView={{ width: `${item.level}%` }}
+                                    whileInView={{
+                                      width: `${60 + (item.level - 80) * 2}%`,
+                                    }}
                                     transition={{
                                       duration: 1,
                                       delay: index * 0.1,
@@ -298,172 +277,104 @@ export default function Home() {
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6, delay: 0.1 }}
                           viewport={{ once: true }}
-                          className="glass-card p-5"
+                          className="glass-card"
                         >
-                          <div className="mb-4 flex items-center gap-3">
-                            <BarChart3 className="h-5 w-5 text-green-400" />
-                            <h3 className="text-lg font-bold text-white">
+                          <div className="flex items-center gap-2 p-5 pb-2">
+                            <BarChart3 className="h-12 w-12 text-green-400" />
+                            <h3 className="text-sm font-bold text-white">
                               Analytics & Visualization
                             </h3>
                           </div>
-                          <div className="relative h-32">
-                            <svg
-                              className="h-full w-full"
-                              viewBox="0 0 200 120"
-                            >
-                              {/* Grid lines */}
-                              <defs>
-                                <pattern
-                                  id="grid"
-                                  width="20"
-                                  height="20"
-                                  patternUnits="userSpaceOnUse"
-                                >
-                                  <path
-                                    d="M 20 0 L 0 0 0 20"
-                                    fill="none"
-                                    stroke="rgba(255,255,255,0.1)"
-                                    strokeWidth="0.5"
-                                  />
-                                </pattern>
-                              </defs>
-                              <rect
-                                width="200"
-                                height="120"
-                                fill="url(#grid)"
+                          <div className="relative h-50 overflow-hidden p-1">
+                            {/* Grid background */}
+                            <div className="absolute inset-0 p-0 opacity-20">
+                              <div
+                                className="h-full w-full p-0"
+                                style={{
+                                  backgroundImage: `
+                                    linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                                    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+                                  `,
+                                  backgroundSize: "20px 20px",
+                                }}
                               />
+                            </div>
 
-                              {/* Line graph for Analytics skills */}
-                              <motion.polyline
-                                fill="none"
-                                stroke="url(#analyticsGradient)"
-                                strokeWidth="3"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                points="20,100 60,60 100,40 140,30 180,20"
-                                initial={{ pathLength: 0 }}
-                                whileInView={{ pathLength: 1 }}
-                                transition={{ duration: 2, delay: 0.5 }}
-                                viewport={{ once: true }}
-                              />
-
-                              {/* Data points with labels */}
+                            {/* Bar chart container */}
+                            <div className="relative flex h-full w-full items-end justify-center gap-0 px-17">
                               {[
                                 {
-                                  x: 20,
-                                  y: 100,
-                                  skill: "Databricks",
-                                  level: 75,
-                                  textAnchor: "start",
-                                },
-                                {
-                                  x: 60,
-                                  y: 60,
-                                  skill: "R",
-                                  level: 80,
-                                  textAnchor: "middle",
-                                },
-                                {
-                                  x: 100,
-                                  y: 40,
-                                  skill: "Tableau",
-                                  level: 85,
-                                  textAnchor: "middle",
-                                },
-                                {
-                                  x: 140,
-                                  y: 30,
-                                  skill: "Matplotlib",
-                                  level: 90,
-                                  textAnchor: "middle",
-                                },
-                                {
-                                  x: 180,
-                                  y: 20,
                                   skill: "Power BI",
                                   level: 95,
-                                  textAnchor: "end",
+                                  color: "from-green-500 to-green-400",
                                 },
-                              ].map((point, index) => (
-                                <g key={index}>
-                                  <motion.circle
-                                    cx={point.x}
-                                    cy={point.y}
-                                    r="4"
-                                    fill="#10b981"
-                                    initial={{ scale: 0 }}
-                                    whileInView={{ scale: 1 }}
-                                    transition={{
-                                      duration: 0.5,
-                                      delay: 1 + index * 0.1,
-                                    }}
-                                    viewport={{ once: true }}
-                                  />
-                                  <motion.text
-                                    x={point.x}
-                                    y={
-                                      index % 2 === 0
-                                        ? point.y + 30
-                                        : point.y - 25
-                                    }
-                                    textAnchor={
-                                      point.textAnchor as
-                                        | "start"
-                                        | "middle"
-                                        | "end"
-                                    }
-                                    className="fill-white/80 text-xs"
-                                    initial={{ opacity: 0 }}
-                                    whileInView={{ opacity: 1 }}
-                                    transition={{
-                                      duration: 0.5,
-                                      delay: 1.5 + index * 0.1,
-                                    }}
-                                    viewport={{ once: true }}
-                                  >
-                                    {point.skill}
-                                  </motion.text>
-                                  <motion.text
-                                    x={point.x}
-                                    y={
-                                      index % 2 === 0
-                                        ? point.y + 45
-                                        : point.y - 10
-                                    }
-                                    textAnchor={
-                                      point.textAnchor as
-                                        | "start"
-                                        | "middle"
-                                        | "end"
-                                    }
-                                    className="fill-green-400 text-xs"
-                                    initial={{ opacity: 0 }}
-                                    whileInView={{ opacity: 1 }}
-                                    transition={{
-                                      duration: 0.5,
-                                      delay: 1.5 + index * 0.1,
-                                    }}
-                                    viewport={{ once: true }}
-                                  >
-                                    {point.level}%
-                                  </motion.text>
-                                </g>
-                              ))}
-
-                              {/* Gradient definition */}
-                              <defs>
-                                <linearGradient
-                                  id="analyticsGradient"
-                                  x1="0%"
-                                  y1="0%"
-                                  x2="100%"
-                                  y2="0%"
+                                {
+                                  skill: "Tableau",
+                                  level: 85,
+                                  color: " from-emerald-500 to-emerald-400",
+                                },
+                                {
+                                  skill: "Matplotlib",
+                                  level: 90,
+                                  color: "from-green-500 to-green-400",
+                                },
+                                {
+                                  skill: "R",
+                                  level: 80,
+                                  color: "from-emerald-500 to-emerald-400",
+                                },
+                              ].map((bar, index) => (
+                                <div
+                                  key={index}
+                                  className="h-full w-full gap-0"
                                 >
-                                  <stop offset="0%" stopColor="#10b981" />
-                                  <stop offset="100%" stopColor="#34d399" />
-                                </linearGradient>
-                              </defs>
-                            </svg>
+                                  <div className="flex h-27 w-full flex-col items-center justify-end">
+                                    {/* Percentage label */}
+                                    <motion.div
+                                      className="mb-1 text-xs font-semibold text-green-400"
+                                      initial={{ opacity: 0 }}
+                                      whileInView={{ opacity: 1 }}
+                                      transition={{
+                                        duration: 0.5,
+                                        delay: 1.2 + index * 0.2,
+                                      }}
+                                      viewport={{ once: true }}
+                                    >
+                                      {bar.level}%
+                                    </motion.div>
+
+                                    {/* Animated bar */}
+                                    <motion.div
+                                      className={`w-full max-w-[16px] rounded-t bg-gradient-to-t ${bar.color}`}
+                                      style={{ height: "100%" }}
+                                      initial={{ height: 0 }}
+                                      whileInView={{
+                                        height: `${40 + (bar.level - 80) * 3}%`,
+                                      }}
+                                      transition={{
+                                        duration: 1.5,
+                                        delay: index * 0.2,
+                                        ease: "easeOut",
+                                      }}
+                                      viewport={{ once: true }}
+                                    />
+                                  </div>
+                                  {/* Skill label */}
+                                  <motion.div
+                                    className="mt-6 flex w-11 origin-center -rotate-90 transform justify-end text-xs font-medium whitespace-nowrap text-white/80"
+                                    initial={{ opacity: 0 }}
+                                    whileInView={{ opacity: 1 }}
+                                    transition={{
+                                      duration: 0.5,
+                                      delay: 1 + index * 0.2,
+                                    }}
+                                    viewport={{ once: true }}
+                                  >
+                                    {bar.skill}
+                                  </motion.div>
+                                </div>
+                              ))}
+                            </div>
                           </div>
                         </motion.div>
                       </div>
@@ -559,7 +470,7 @@ export default function Home() {
                                   x: 120,
                                   y: 40,
                                   skill: "Scikit-learn",
-                                  level: 90,
+                                  level: 95,
                                   labelX: 120,
                                   labelY: 20,
                                 },
@@ -567,7 +478,7 @@ export default function Home() {
                                   x: 180,
                                   y: 80,
                                   skill: "PyTorch",
-                                  level: 80,
+                                  level: 85,
                                   labelX: 210,
                                   labelY: 80,
                                 },
@@ -575,7 +486,7 @@ export default function Home() {
                                   x: 160,
                                   y: 160,
                                   skill: "Langchain",
-                                  level: 75,
+                                  level: 80,
                                   labelX: 175,
                                   labelY: 190,
                                 },
@@ -583,7 +494,7 @@ export default function Home() {
                                   x: 80,
                                   y: 160,
                                   skill: "Hugging Face",
-                                  level: 70,
+                                  level: 75,
                                   labelX: 50,
                                   labelY: 190,
                                 },
@@ -591,7 +502,7 @@ export default function Home() {
                                   x: 60,
                                   y: 80,
                                   skill: "MLflow",
-                                  level: 65,
+                                  level: 90,
                                   labelX: 30,
                                   labelY: 80,
                                 },
@@ -676,16 +587,13 @@ export default function Home() {
                         <h2 className="mb-4 text-2xl font-bold text-white">
                           Certifications
                         </h2>
-                        <p className="mb-6 text-sm text-white/80">
-                          Professional certifications and achievements
-                        </p>
                       </div>
 
                       <div className="space-y-3">
                         {[
                           "Databricks Lakehouse Fundamentals",
                           "AWS Certified Cloud Practitioner",
-                          "Power BI Data Analyst Associate",
+                          "Power BI Data Analyst Associate - Microsoft Certified",
                           "SQL (Advanced) - HackerRank",
                           "Data Engineer Certificate - DataCamp",
                           "Top 100 Shopee Code League Finals (2022)",
@@ -710,7 +618,7 @@ export default function Home() {
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="space-y-8 lg:col-span-2 lg:mt-8 lg:ml-8"
+                    className="space-y-8 lg:col-span-2 lg:mt-8 lg:ml-18"
                   >
                     <div className="">
                       <h1 className="mb-6 text-4xl font-bold text-white lg:text-5xl">
@@ -757,58 +665,83 @@ export default function Home() {
                         <h2 className="mb-2 text-2xl font-bold text-white">
                           Experience
                         </h2>
-                        <p className="text-sm text-white/80">
-                          Building innovative solutions at the intersection of
-                          data, AI, and mental health
-                        </p>
                       </motion.div>
 
-                      <div className="space-y-4">
+                      <div className="space-y-6">
                         {/* CapstoneBara */}
                         <motion.div
                           initial={{ opacity: 0, x: 20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.6 }}
                           viewport={{ once: true }}
-                          className="glass-card p-4"
+                          className="glass-card p-6"
                         >
-                          <div className="mb-3 flex items-start justify-between">
+                          <div className="mb-4 flex items-start justify-between">
                             <div>
-                              <h3 className="mb-1 text-xl font-bold text-white">
+                              <h3 className="mb-2 text-2xl font-bold text-white">
                                 Co-Founder
                               </h3>
-                              <p className="text-sm text-purple-400">
+                              <p className="text-lg font-semibold text-cyan-400">
                                 CapstoneBara
                               </p>
-                              <p className="text-xs text-white/60">
+                              <p className="text-sm text-white/60">
                                 08/2024 - Present
                               </p>
                             </div>
-                            <div className="text-2xl">🏥</div>
                           </div>
-                          <p className="mb-3 text-sm text-white/80">
-                            Developed a digital platform for mental well-being
-                            and health management, integrating AI assistant
-                            (Bara) for emotional support & advice, health
-                            dashboard, appointment tools, and doctor snapshot.
+                          <p className="mb-4 text-base leading-relaxed text-white/90">
+                            Developed a{" "}
+                            <span className="font-bold text-blue-400">
+                              digital health platform
+                            </span>{" "}
+                            integrating
+                            <span className="font-bold text-blue-400">
+                              {" "}
+                              AI assistant (Bara)
+                            </span>{" "}
+                            for emotional support,
+                            <span className="font-bold text-blue-400">
+                              {" "}
+                              health dashboard
+                            </span>
+                            , and appointment management.
                           </p>
-                          <div className="mb-2 flex flex-wrap gap-1">
-                            <span className="glass-tag text-xs">
+                          <div className="mb-3 flex flex-wrap gap-2">
+                            <span className="glass-tag text-sm font-medium">
                               AI Assistant
                             </span>
-                            <span className="glass-tag text-xs">
+                            <span className="glass-tag text-sm font-medium">
                               Health Dashboard
                             </span>
-                            <span className="glass-tag text-xs">
+                            <span className="glass-tag text-sm font-medium">
                               Mental Health
                             </span>
                           </div>
-                          <div className="glass-highlight text-xs">
-                            <Sparkles className="h-3 w-3 text-yellow-400" />
-                            <span>
-                              Launched a unified platform improving access to
-                              mental health resources and proactive care
-                            </span>
+                          <div className="grid gap-3 md:grid-cols-3">
+                            <div className="glass-stat">
+                              <div className="text-xl font-bold text-green-400">
+                                500+
+                              </div>
+                              <div className="text-sm text-white/70">
+                                Users Onboarded
+                              </div>
+                            </div>
+                            <div className="glass-stat">
+                              <div className="text-xl font-bold text-blue-400">
+                                85%
+                              </div>
+                              <div className="text-sm text-white/70">
+                                User Satisfaction
+                              </div>
+                            </div>
+                            <div className="glass-stat">
+                              <div className="text-xl font-bold text-purple-400">
+                                24/7
+                              </div>
+                              <div className="text-sm text-white/70">
+                                AI Support
+                              </div>
+                            </div>
                           </div>
                         </motion.div>
 
@@ -818,56 +751,88 @@ export default function Home() {
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.6, delay: 0.1 }}
                           viewport={{ once: true }}
-                          className="glass-card p-4"
+                          className="glass-card p-6"
                         >
-                          <div className="mb-3 flex items-start justify-between">
+                          <div className="mb-4 flex items-start justify-between">
                             <div>
-                              <h3 className="mb-1 text-xl font-bold text-white">
+                              <h3 className="mb-2 text-2xl font-bold text-white">
                                 Data Science Intern
                               </h3>
-                              <p className="text-sm text-purple-400">
+                              <p className="text-lg font-semibold text-cyan-400">
                                 Skwill AI
                               </p>
-                              <p className="text-xs text-white/60">
+                              <p className="text-sm text-white/60">
                                 05/2024 - 03/2025
                               </p>
                             </div>
-                            <div className="text-2xl">🤖</div>
                           </div>
-                          <p className="mb-3 text-sm text-white/80">
-                            Led team to add GPT-4o feature for sales coaching &
-                            info retrieval. Analyzed user logs with Pandas/SQL,
-                            built data-quality scripts, and developed Power BI
-                            dashboards.
+                          <p className="mb-4 text-base leading-relaxed text-white/90">
+                            Led team to integrate{" "}
+                            <span className="font-bold text-blue-400">
+                              GPT-4o
+                            </span>{" "}
+                            for sales coaching. Analyzed user logs with{" "}
+                            <span className="font-bold text-blue-400">
+                              Pandas/SQL
+                            </span>
+                            , built data-quality scripts , developed
+                            <span className="font-bold text-blue-400">
+                              {" "}
+                              Power BI dashboards
+                            </span>
+                            , automated
+                            <span className="font-bold text-blue-400">
+                              {" "}
+                              ETL{" "}
+                            </span>
+                            to
+                            <span className="font-bold text-blue-400">
+                              {" "}
+                              Snowflake{" "}
+                            </span>
+                            with
+                            <span className="font-bold text-blue-400">
+                              {" "}
+                              Airflow{" "}
+                            </span>
+                            .
                           </p>
-                          <div className="mb-2 flex flex-wrap gap-1">
-                            <span className="glass-tag text-xs">Python</span>
-                            <span className="glass-tag text-xs">SQL</span>
-                            <span className="glass-tag text-xs">Power BI</span>
-                            <span className="glass-tag text-xs">Airflow</span>
+                          <div className="mb-3 flex flex-wrap gap-2">
+                            <span className="glass-tag text-sm font-medium">
+                              Python
+                            </span>
+                            <span className="glass-tag text-sm font-medium">
+                              SQL
+                            </span>
+                            <span className="glass-tag text-sm font-medium">
+                              Power BI
+                            </span>
+                            <span className="glass-tag text-sm font-medium">
+                              Airflow
+                            </span>
                           </div>
-                          <div className="grid gap-2 md:grid-cols-3">
+                          <div className="grid gap-3 md:grid-cols-3">
                             <div className="glass-stat">
-                              <div className="text-lg font-bold text-green-400">
+                              <div className="text-xl font-bold text-green-400">
                                 15%
                               </div>
-                              <div className="text-xs text-white/60">
+                              <div className="text-sm text-white/70">
                                 Satisfaction Boost
                               </div>
                             </div>
                             <div className="glass-stat">
-                              <div className="text-lg font-bold text-blue-400">
+                              <div className="text-xl font-bold text-blue-400">
                                 20%
                               </div>
-                              <div className="text-xs text-white/60">
+                              <div className="text-sm text-white/70">
                                 Error Reduction
                               </div>
                             </div>
                             <div className="glass-stat">
-                              <div className="text-lg font-bold text-purple-400">
+                              <div className="text-xl font-bold text-purple-400">
                                 12%
                               </div>
-                              <div className="text-xs text-white/60">
+                              <div className="text-sm text-white/70">
                                 Accuracy Improvement
                               </div>
                             </div>
@@ -880,43 +845,79 @@ export default function Home() {
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.6, delay: 0.2 }}
                           viewport={{ once: true }}
-                          className="glass-card p-4"
+                          className="glass-card p-6"
                         >
-                          <div className="mb-3 flex items-start justify-between">
+                          <div className="mb-4 flex items-start justify-between">
                             <div>
-                              <h3 className="mb-1 text-xl font-bold text-white">
+                              <h3 className="mb-2 text-2xl font-bold text-white">
                                 Research Assistant – Data Analyst
                               </h3>
-                              <p className="text-sm text-purple-400">
+                              <p className="text-lg font-semibold text-cyan-400">
                                 S P Jain School of Global Management
                               </p>
-                              <p className="text-xs text-white/60">
+                              <p className="text-sm text-white/60">
                                 01/2025 - 05/2025
                               </p>
                             </div>
-                            <div className="text-2xl">🔬</div>
                           </div>
-                          <p className="mb-3 text-sm text-white/80">
-                            Supported Prof. Zaidan in developing ML models for
-                            fall-risk classification detection in older adults.
-                            Preprocessed sensor data, conducted EDA & feature
-                            selection, and applied SHAP for interpretability.
+                          <p className="mb-4 text-base leading-relaxed text-white/90">
+                            Developed{" "}
+                            <span className="font-bold text-blue-400">
+                              ML models
+                            </span>{" "}
+                            for fall-risk detection in older adults.
+                            Preprocessed{" "}
+                            <span className="font-bold text-blue-400">
+                              sensor data
+                            </span>
+                            , conducted
+                            <span className="font-bold text-blue-400">
+                              {" "}
+                              EDA & feature selection
+                            </span>
+                            , and applied
+                            <span className="font-bold text-blue-400">
+                              {" "}
+                              SHAP
+                            </span>{" "}
+                            for model interpretability.
                           </p>
-                          <div className="mb-2 flex flex-wrap gap-1">
-                            <span className="glass-tag text-xs">
+                          <div className="mb-3 flex flex-wrap gap-2">
+                            <span className="glass-tag text-sm font-medium">
                               Machine Learning
                             </span>
-                            <span className="glass-tag text-xs">SHAP</span>
-                            <span className="glass-tag text-xs">
+                            <span className="glass-tag text-sm font-medium">
+                              SHAP
+                            </span>
+                            <span className="glass-tag text-sm font-medium">
                               Feature Selection
                             </span>
                           </div>
-                          <div className="glass-highlight text-xs">
-                            <BarChart3 className="h-3 w-3 text-green-400" />
-                            <span>
-                              Boosted model accuracy 15% through iterative
-                              tuning
-                            </span>
+                          <div className="grid gap-3 md:grid-cols-3">
+                            <div className="glass-stat">
+                              <div className="text-xl font-bold text-green-400">
+                                92%
+                              </div>
+                              <div className="text-sm text-white/70">
+                                Model Accuracy
+                              </div>
+                            </div>
+                            <div className="glass-stat">
+                              <div className="text-xl font-bold text-blue-400">
+                                1,200+
+                              </div>
+                              <div className="text-sm text-white/70">
+                                Sensor Records
+                              </div>
+                            </div>
+                            <div className="glass-stat">
+                              <div className="text-xl font-bold text-purple-400">
+                                15%
+                              </div>
+                              <div className="text-sm text-white/70">
+                                Accuracy Boost
+                              </div>
+                            </div>
                           </div>
                         </motion.div>
                       </div>
@@ -934,10 +935,6 @@ export default function Home() {
                         <h2 className="mb-2 text-2xl font-bold text-white">
                           Projects
                         </h2>
-                        <p className="text-sm text-white/80">
-                          From AI digit recognition to sports analytics -
-                          exploring the endless possibilities of data
-                        </p>
                       </motion.div>
 
                       <div className="grid gap-4 md:grid-cols-2">
@@ -949,7 +946,7 @@ export default function Home() {
                           viewport={{ once: true }}
                           className="glass-card group p-4 transition-transform duration-300 hover:scale-105"
                         >
-                          <div className="mb-2 text-2xl">📅</div>
+                          {/* <div className="mb-2 text-2xl">📅</div> */}
                           <h3 className="mb-2 text-lg font-bold text-white">
                             AI-Powered Calendar Assistant
                           </h3>
@@ -990,7 +987,7 @@ export default function Home() {
                           viewport={{ once: true }}
                           className="glass-card group p-4 transition-transform duration-300 hover:scale-105"
                         >
-                          <div className="mb-2 text-2xl">📊</div>
+                          {/* <div className="mb-2 text-2xl">📊</div> */}
                           <h3 className="mb-2 text-lg font-bold text-white">
                             Airtable Clone
                           </h3>
@@ -1029,7 +1026,7 @@ export default function Home() {
                           viewport={{ once: true }}
                           className="glass-card group p-4 transition-transform duration-300 hover:scale-105"
                         >
-                          <div className="mb-2 text-2xl">🔢</div>
+                          {/* <div className="mb-2 text-2xl">🔢</div> */}
                           <h3 className="mb-2 text-lg font-bold text-white">
                             AI Digit Recognition
                           </h3>
@@ -1062,7 +1059,7 @@ export default function Home() {
                           viewport={{ once: true }}
                           className="glass-card group p-4 transition-transform duration-300 hover:scale-105"
                         >
-                          <div className="mb-2 text-2xl">🎓</div>
+                          {/* <div className="mb-2 text-2xl">🎓</div> */}
                           <h3 className="mb-2 text-lg font-bold text-white">
                             University Enrollment System
                           </h3>
@@ -1097,7 +1094,7 @@ export default function Home() {
                           viewport={{ once: true }}
                           className="glass-card group p-4 transition-transform duration-300 hover:scale-105"
                         >
-                          <div className="mb-2 text-2xl">⚽</div>
+                          {/* <div className="mb-2 text-2xl">⚽</div> */}
                           <h3 className="mb-2 text-lg font-bold text-white">
                             Sports Analytics Database
                           </h3>
@@ -1128,7 +1125,7 @@ export default function Home() {
                           viewport={{ once: true }}
                           className="glass-card group p-4 transition-transform duration-300 hover:scale-105"
                         >
-                          <div className="mb-2 text-2xl">⚡</div>
+                          {/* <div className="mb-2 text-2xl">⚡</div> */}
                           <h3 className="mb-2 text-lg font-bold text-white">
                             Energy Usage Prediction
                           </h3>
@@ -1177,7 +1174,7 @@ export default function Home() {
                 </h2>
                 <p className="mx-auto max-w-3xl text-xl text-white/80">
                   Ready to turn data into insights? Let&apos;s build something
-                  amazing together! 🐱
+                  amazing together! 🐈‍
                 </p>
               </motion.div>
 
@@ -1277,7 +1274,7 @@ export default function Home() {
           </section>
 
           {/* Footer */}
-          <footer className="border-t border-white/10 px-6 py-8">
+          <footer className="border-white/10 px-6 py-8">
             <div className="mx-auto max-w-7xl text-center">
               <p className="text-white/60">
                 © 2025 Luan Tran. Built with ❤️ and lots of 🐈 🍵

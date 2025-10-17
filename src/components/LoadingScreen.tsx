@@ -102,7 +102,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         >
           {/* Database Loading Visualization - Top */}
           <div className="mb-8">
-            <div className="relative mx-auto h-48 w-full max-w-3xl overflow-hidden rounded-xl border border-cyan-400/20 bg-gradient-to-br from-black/30 to-black/10">
+            <div className="relative mx-auto h-48 w-full max-w-6xl overflow-hidden rounded-xl border border-cyan-400/20 bg-gradient-to-br from-black/30 to-black/10">
               {/* Background grid pattern */}
               <div className="absolute inset-0 opacity-20">
                 <div
@@ -245,7 +245,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
               >
                 <Database className="h-8 w-8 text-cyan-400" />
               </motion.div>
-              <span className="text-2xl font-bold text-white">
+              <span className="text-4xl font-bold text-white">
                 Loading Luan Tran&apos;s Database
               </span>
             </div>
