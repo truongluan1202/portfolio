@@ -153,7 +153,7 @@ export default function Home() {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="mx-4 mt-4 p-4 lg:absolute lg:top-full lg:right-5 lg:mt-0 lg:w-70"
+                  className="mx-4 mt-4 p-4 lg:absolute lg:top-full lg:right-5 lg:mt-0 lg:w-70 2xl:right-75"
                   style={{
                     background: "rgba(17, 24, 39, 1)",
                     backdropFilter: "blur(20px)",
