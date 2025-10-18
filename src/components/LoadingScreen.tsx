@@ -5,7 +5,6 @@ import {
   BarChart3,
   TrendingUp,
   PieChart,
-  Brain,
   Server,
   Cpu,
 } from "lucide-react";
@@ -92,17 +91,17 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         ))}
       </div>
 
-      <div className="relative z-10 w-full max-w-6xl p-8">
+      <div className="relative z-10 w-full max-w-6xl p-4 sm:p-6 lg:p-8">
         {/* Main loading container */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="glass-card p-8"
+          className="glass-card p-4 sm:p-6 lg:p-8"
         >
           {/* Database Loading Visualization - Top */}
-          <div className="mb-8">
-            <div className="relative mx-auto h-48 w-full max-w-6xl overflow-hidden rounded-xl border border-cyan-400/20 bg-gradient-to-br from-black/30 to-black/10">
+          <div className="mb-6 sm:mb-8">
+            <div className="relative mx-auto h-32 w-full max-w-6xl overflow-hidden rounded-xl border border-cyan-400/20 bg-gradient-to-br from-black/30 to-black/10 sm:h-40 lg:h-48">
               {/* Background grid pattern */}
               <div className="absolute inset-0 opacity-20">
                 <div
@@ -176,8 +175,8 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                   ease: "easeInOut",
                 }}
               >
-                <div className="flex h-16 w-16 items-center justify-center rounded-full border border-cyan-400/30 bg-gradient-to-r from-cyan-400/20 to-blue-400/20">
-                  <Cpu className="h-8 w-8 text-white" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-cyan-400/30 bg-gradient-to-r from-cyan-400/20 to-blue-400/20 sm:h-14 sm:w-14 lg:h-16 lg:w-16">
+                  <Cpu className="h-6 w-6 text-white sm:h-7 sm:w-7 lg:h-8 lg:w-8" />
                 </div>
               </motion.div>
 
@@ -206,7 +205,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           </div>
 
           {/* Header - Centered */}
-          <div className="mb-8 text-center">
+          <div className="mb-6 text-center sm:mb-8">
             {/* <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
@@ -238,25 +237,25 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
               Luan Tran&apos;s Data Portfolio
             </p>
           </div> */}
-            <div className="mb-6 flex items-center justify-center gap-3">
+            <div className="mb-4 flex flex-col items-center justify-center gap-2 sm:mb-6 sm:flex-row sm:gap-3">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
               >
-                <Database className="h-8 w-8 text-cyan-400" />
+                <Database className="h-6 w-6 text-cyan-400 sm:h-8 sm:w-8" />
               </motion.div>
-              <span className="text-4xl font-bold text-white">
+              <span className="text-xl font-bold text-white sm:text-2xl lg:text-4xl">
                 Loading Luan Tran&apos;s Database
               </span>
             </div>
           </div>
           {/* Progress bar */}
-          <div className="mb-8">
-            <div className="mb-4 flex items-center justify-between">
-              <span className="text-sm text-white/80">
+          <div className="mb-6 sm:mb-8">
+            <div className="mb-3 flex items-center justify-between sm:mb-4">
+              <span className="text-xs text-white/80 sm:text-sm">
                 {steps[currentStep]}
               </span>
-              <span className="text-sm text-white/60">
+              <span className="text-xs text-white/60 sm:text-sm">
                 {Math.round(progress)}%
               </span>
             </div>
@@ -272,21 +271,21 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           </div>
 
           {/* Data visualization grid */}
-          <div className="mb-8 grid grid-cols-2 gap-6 lg:grid-cols-4">
+          <div className="mb-6 grid grid-cols-2 gap-3 sm:mb-8 sm:gap-4 lg:grid-cols-4 lg:gap-6">
             {/* Chart 1 - Bar Chart */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5 }}
-              className="glass-card p-6"
+              className="glass-card p-3 sm:p-4 lg:p-6"
             >
-              <div className="mb-4 flex items-center gap-2">
-                <BarChart3 className="h-6 w-6 text-blue-400" />
-                <span className="text-base font-medium text-white/80">
+              <div className="mb-3 flex items-center gap-2 sm:mb-4">
+                <BarChart3 className="h-5 w-5 text-blue-400 sm:h-6 sm:w-6" />
+                <span className="text-sm font-medium text-white/80 sm:text-base">
                   Analytics
                 </span>
               </div>
-              <div className="flex h-24 items-end justify-between gap-1">
+              <div className="flex h-16 items-end justify-between gap-1 sm:h-20 lg:h-24">
                 {[60, 80, 45, 90, 70].map((height, i) => (
                   <motion.div
                     key={i}
@@ -304,15 +303,15 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.7 }}
-              className="glass-card p-6"
+              className="glass-card p-3 sm:p-4 lg:p-6"
             >
-              <div className="mb-4 flex items-center gap-2">
-                <PieChart className="h-6 w-6 text-green-400" />
-                <span className="text-base font-medium text-white/80">
+              <div className="mb-3 flex items-center gap-2 sm:mb-4">
+                <PieChart className="h-5 w-5 text-green-400 sm:h-6 sm:w-6" />
+                <span className="text-sm font-medium text-white/80 sm:text-base">
                   Distribution
                 </span>
               </div>
-              <div className="relative mx-auto h-20 w-20">
+              <div className="relative mx-auto h-16 w-16 sm:h-18 sm:w-18 lg:h-20 lg:w-20">
                 <svg className="h-full w-full" viewBox="0 0 100 100">
                   <motion.circle
                     cx="50"
@@ -344,7 +343,9 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                   </defs>
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-sm font-bold text-white/80">75%</span>
+                  <span className="text-xs font-bold text-white/80 sm:text-sm">
+                    75%
+                  </span>
                 </div>
               </div>
             </motion.div>
@@ -354,15 +355,15 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.9 }}
-              className="glass-card p-6"
+              className="glass-card p-3 sm:p-4 lg:p-6"
             >
-              <div className="mb-4 flex items-center gap-2">
-                <TrendingUp className="h-6 w-6 text-purple-400" />
-                <span className="text-base font-medium text-white/80">
+              <div className="mb-3 flex items-center gap-2 sm:mb-4">
+                <TrendingUp className="h-5 w-5 text-purple-400 sm:h-6 sm:w-6" />
+                <span className="text-sm font-medium text-white/80 sm:text-base">
                   Trends
                 </span>
               </div>
-              <div className="relative h-20">
+              <div className="relative h-16 sm:h-18 lg:h-20">
                 <svg className="h-full w-full" viewBox="0 0 100 50">
                   <motion.path
                     d="M0,40 Q25,20 50,25 T100,10"
@@ -412,9 +413,9 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1.1 }}
-              className="glass-card p-6"
+              className="glass-card p-3 sm:p-4 lg:p-6"
             >
-              <div className="mb-4 flex items-center gap-2">
+              <div className="mb-3 flex items-center gap-2 sm:mb-4">
                 <motion.div
                   animate={{
                     rotate: [0, 10, -10, 0],
@@ -426,13 +427,13 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                     ease: "easeInOut",
                   }}
                 >
-                  <Server className="h-6 w-6 text-orange-400" />
+                  <Server className="h-5 w-5 text-orange-400 sm:h-6 sm:w-6" />
                 </motion.div>
-                <span className="text-base font-medium text-white/80">
+                <span className="text-sm font-medium text-white/80 sm:text-base">
                   Server
                 </span>
               </div>
-              <div className="flex h-20 flex-col justify-between space-y-2">
+              <div className="flex h-16 flex-col justify-between space-y-1 sm:h-18 sm:space-y-2 lg:h-20">
                 {[1, 2, 3, 4, 5].map((i) => (
                   <motion.div
                     key={i}
@@ -458,14 +459,14 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           </div>
 
           {/* Stats */}
-          <div className="mt-8 grid grid-cols-3 gap-6">
+          <div className="mt-6 grid grid-cols-3 gap-3 sm:mt-8 sm:gap-4 lg:gap-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.5 }}
-              className="glass-card p-4 text-center"
+              className="glass-card p-2 text-center sm:p-3 lg:p-4"
             >
-              <div className="mb-2 text-3xl font-bold text-green-400">
+              <div className="mb-1 text-xl font-bold text-green-400 sm:mb-2 sm:text-2xl lg:text-3xl">
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -474,16 +475,18 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                   95%
                 </motion.span>
               </div>
-              <div className="text-base text-white/60">Accuracy</div>
+              <div className="text-xs text-white/60 sm:text-sm lg:text-base">
+                Accuracy
+              </div>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.7 }}
-              className="glass-card p-4 text-center"
+              className="glass-card p-2 text-center sm:p-3 lg:p-4"
             >
-              <div className="mb-2 text-3xl font-bold text-blue-400">
+              <div className="mb-1 text-xl font-bold text-blue-400 sm:mb-2 sm:text-2xl lg:text-3xl">
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -492,16 +495,18 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                   1.2M
                 </motion.span>
               </div>
-              <div className="text-base text-white/60">Data Points</div>
+              <div className="text-xs text-white/60 sm:text-sm lg:text-base">
+                Data Points
+              </div>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.9 }}
-              className="glass-card p-4 text-center"
+              className="glass-card p-2 text-center sm:p-3 lg:p-4"
             >
-              <div className="mb-2 text-3xl font-bold text-purple-400">
+              <div className="mb-1 text-xl font-bold text-purple-400 sm:mb-2 sm:text-2xl lg:text-3xl">
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -510,7 +515,9 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                   99.9%
                 </motion.span>
               </div>
-              <div className="text-base text-white/60">Uptime</div>
+              <div className="text-xs text-white/60 sm:text-sm lg:text-base">
+                Uptime
+              </div>
             </motion.div>
           </div>
         </motion.div>

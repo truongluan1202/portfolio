@@ -411,6 +411,17 @@ body {
     font-size: 10px;
     padding: 3px 8px;
   }
+
+  /* Improve mobile touch targets */
+  .glass-icon-button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .glass-button-small {
+    min-height: 36px;
+    padding: 8px 12px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -428,6 +439,21 @@ body {
   .glass-input {
     padding: 8px 12px;
     font-size: 14px;
+  }
+
+  /* Ensure proper spacing on very small screens */
+  .glass-stat {
+    padding: 12px;
+  }
+
+  .glass-badge {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  .glass-tag {
+    font-size: 9px;
+    padding: 2px 6px;
   }
 }
 

@@ -17,11 +17,14 @@ import {
   Code,
   Server,
   Cpu,
+  Menu,
+  X,
 } from "lucide-react";
 import LoadingScreen from "~/components/LoadingScreen";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <>
@@ -95,52 +98,119 @@ export default function Home() {
             }}
           >
             <motion.div
-              className="mx-auto flex max-w-7xl items-center justify-between"
+              className="mx-auto flex max-w-7xl items-center justify-between px-4"
               initial={{ y: -100 }}
               animate={{ y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="flex items-center gap-2 text-2xl font-bold text-white">
+              <div className="flex items-center gap-2 text-xl font-bold text-white sm:text-2xl">
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                 >
-                  <Code className="h-8 w-8 text-purple-400" />
+                  <Code className="h-6 w-6 text-purple-400 sm:h-8 sm:w-8" />
                 </motion.div>
-                Portfolio
+                <span className="hidden sm:inline">Portfolio</span>
               </div>
-              <div className="hidden gap-8 md:flex">
+              <div className="hidden gap-6 lg:flex">
                 {["About", "Experience", "Projects", "Skills", "Contact"].map(
                   (item) => (
                     <a
                       key={item}
                       href={`#${item.toLowerCase()}`}
                       className="text-white/80 transition-colors duration-300 hover:text-white"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const element = document.getElementById(
+                          item.toLowerCase(),
+                        );
+                        if (element) {
+                          element.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }}
                     >
                       {item}
                     </a>
                   ),
                 )}
               </div>
-              <div className="w-32"></div>
+              <button
+                className="glass-icon-button"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
+              </button>
             </motion.div>
+
+            {/* Mobile Menu */}
+            <AnimatePresence>
+              {mobileMenuOpen && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="mx-4 mt-4 p-4 lg:absolute lg:top-full lg:right-78 lg:mt-0 lg:w-48"
+                  style={{
+                    background: "rgba(17, 24, 39, 1)",
+                    backdropFilter: "blur(20px)",
+                    WebkitBackdropFilter: "blur(20px)",
+                    border: "1px solid rgba(255, 255, 255, 0.3)",
+                    borderRadius: "20px",
+                    boxShadow:
+                      "0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+                  }}
+                >
+                  <div className="flex flex-col gap-4">
+                    {[
+                      "About",
+                      "Experience",
+                      "Projects",
+                      "Skills",
+                      "Contact",
+                    ].map((item) => (
+                      <a
+                        key={item}
+                        href={`#${item.toLowerCase()}`}
+                        className="py-2 text-white/80 transition-colors duration-300 hover:text-white"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setMobileMenuOpen(false);
+                          const element = document.getElementById(
+                            item.toLowerCase(),
+                          );
+                          if (element) {
+                            element.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }}
+                      >
+                        {item}
+                      </a>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </nav>
 
           {/* Main Content Layout */}
-          <div className="px-8 pt-24">
-            <div className="mx-30 max-w-7xl">
+          <div className="px-4 pt-30 sm:px-8 sm:pt-24">
+            <div className="mx-auto max-w-6xl lg:mx-auto">
               {/* Hero Section - Split into two sides */}
               <section id="about" className="mb-20">
-                <div className="grid gap-3 lg:grid-cols-3">
+                <div className="grid lg:grid-cols-3">
                   {/* Left Side - Profile Card */}
                   <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="mr-0 space-y-8 lg:mt-8"
+                    className="space-y-8 lg:mt-8"
                   >
-                    <div className="glass-card p-6 text-center">
-                      <div className="mx-auto mb-4 h-48 w-48 overflow-hidden rounded-full bg-gradient-to-br from-purple-400 to-pink-400">
+                    <div className="glass-card p-4 text-center sm:p-6">
+                      <div className="mx-auto mb-4 h-32 w-32 overflow-hidden rounded-full bg-gradient-to-br from-purple-400 to-pink-400 sm:h-48 sm:w-48">
                         <Image
                           src="/avatar.png"
                           alt="Luan Tran - Data Engineer"
@@ -208,6 +278,7 @@ export default function Home() {
 
                     {/* Skills Section */}
                     <motion.div
+                      id="skills"
                       initial={{ opacity: 0, y: 50 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.8 }}
@@ -231,8 +302,8 @@ export default function Home() {
                           className="glass-card p-5"
                         >
                           <div className="mb-4 flex items-center gap-3">
-                            <Server className="h-8 w-8 text-blue-400" />
-                            <h3 className="text-md font-bold text-white">
+                            <Server className="h-6 w-6 text-blue-400 sm:h-8 sm:w-8" />
+                            <h3 className="sm:text-md text-sm font-bold text-white">
                               Data Engineering
                             </h3>
                           </div>
@@ -279,13 +350,13 @@ export default function Home() {
                           viewport={{ once: true }}
                           className="glass-card"
                         >
-                          <div className="flex items-center gap-2 p-5 pb-2">
-                            <BarChart3 className="h-12 w-12 text-green-400" />
-                            <h3 className="text-md font-bold text-white">
+                          <div className="flex items-center gap-2 p-4 pb-2 sm:p-5">
+                            <BarChart3 className="h-8 w-8 text-green-400 sm:h-12 sm:w-12" />
+                            <h3 className="sm:text-md text-sm font-bold text-white">
                               Analytics & Visualization
                             </h3>
                           </div>
-                          <div className="relative h-50 overflow-hidden p-1">
+                          <div className="relative h-40 overflow-hidden p-1 sm:h-50">
                             {/* Grid background */}
                             <div className="absolute inset-0 p-0 opacity-20">
                               <div
@@ -301,7 +372,7 @@ export default function Home() {
                             </div>
 
                             {/* Bar chart container */}
-                            <div className="relative flex h-full w-full items-end justify-center gap-0 px-17">
+                            <div className="relative flex h-full w-full items-end justify-center gap-0 px-8 sm:px-17">
                               {[
                                 {
                                   skill: "Power BI",
@@ -328,7 +399,7 @@ export default function Home() {
                                   key={index}
                                   className="h-full w-full gap-0"
                                 >
-                                  <div className="flex h-27 w-full flex-col items-center justify-end">
+                                  <div className="flex h-20 w-full flex-col items-center justify-end sm:h-27">
                                     {/* Percentage label */}
                                     <motion.div
                                       className="mb-1 text-xs font-semibold text-green-400"
@@ -345,7 +416,7 @@ export default function Home() {
 
                                     {/* Animated bar */}
                                     <motion.div
-                                      className={`w-full max-w-[16px] rounded-t bg-gradient-to-t ${bar.color}`}
+                                      className={`w-full max-w-[12px] rounded-t bg-gradient-to-t sm:max-w-[16px] ${bar.color}`}
                                       style={{ height: "100%" }}
                                       initial={{ height: 0 }}
                                       whileInView={{
@@ -361,7 +432,7 @@ export default function Home() {
                                   </div>
                                   {/* Skill label */}
                                   <motion.div
-                                    className="mt-6 flex w-11 origin-center -rotate-90 transform justify-end text-xs font-medium whitespace-nowrap text-white/80"
+                                    className="mt-5 ml-4 flex w-8 origin-center -rotate-90 transform justify-end text-xs font-medium whitespace-nowrap text-white/80 sm:mt-6 sm:ml-0 sm:w-11"
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
                                     transition={{
@@ -385,16 +456,16 @@ export default function Home() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                         viewport={{ once: true }}
-                        className="glass-card p-5"
+                        className="glass-card p-5 pb-0"
                       >
                         <div className="mb-4 flex items-center gap-3">
-                          <Cpu className="h-7 w-7 text-purple-400" />
-                          <h3 className="text-lg font-bold text-white">
+                          <Cpu className="h-6 w-6 text-purple-400 sm:h-7 sm:w-7" />
+                          <h3 className="text-sm font-bold text-white sm:text-lg">
                             AI & Machine Learning
                           </h3>
                         </div>
                         <div className="m-0 flex items-center justify-center">
-                          <div className="relative m-0 h-70 w-96">
+                          <div className="relative m-0 h-60 w-80 sm:h-70 sm:w-96">
                             <svg
                               className="h-full w-full"
                               viewBox="0 0 240 240"
@@ -618,10 +689,10 @@ export default function Home() {
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="space-y-8 lg:col-span-2 lg:mt-8 lg:ml-18"
+                    className="mt-20 space-y-8 lg:col-span-2 lg:mt-8 lg:ml-19"
                   >
                     <div className="">
-                      <h1 className="mb-6 text-4xl font-bold text-white lg:text-5xl">
+                      <h1 className="mb-6 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
                         Hi, I&apos;m{" "}
                         <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                           Luan
@@ -654,7 +725,7 @@ export default function Home() {
                     </div>
 
                     {/* Experience Section */}
-                    <div>
+                    <div id="experience">
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -662,7 +733,7 @@ export default function Home() {
                         viewport={{ once: true }}
                         className="mb-6"
                       >
-                        <h2 className="mb-2 text-2xl font-bold text-white">
+                        <h2 className="mb-2 text-xl font-bold text-white sm:text-2xl">
                           Experience
                         </h2>
                       </motion.div>
@@ -674,14 +745,14 @@ export default function Home() {
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.6 }}
                           viewport={{ once: true }}
-                          className="glass-card p-6"
+                          className="glass-card p-4 sm:p-6"
                         >
                           <div className="mb-4 flex items-start justify-between">
                             <div>
-                              <h3 className="mb-2 text-2xl font-bold text-white">
+                              <h3 className="mb-2 text-xl font-bold text-white sm:text-2xl">
                                 Co-Founder
                               </h3>
-                              <p className="text-lg font-semibold text-cyan-400">
+                              <p className="text-base font-semibold text-cyan-400 sm:text-lg">
                                 CapstoneBara
                               </p>
                               <p className="text-sm text-white/60">
@@ -751,14 +822,14 @@ export default function Home() {
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.6, delay: 0.1 }}
                           viewport={{ once: true }}
-                          className="glass-card p-6"
+                          className="glass-card p-4 sm:p-6"
                         >
                           <div className="mb-4 flex items-start justify-between">
                             <div>
-                              <h3 className="mb-2 text-2xl font-bold text-white">
+                              <h3 className="mb-2 text-xl font-bold text-white sm:text-2xl">
                                 Data Science Intern
                               </h3>
-                              <p className="text-lg font-semibold text-cyan-400">
+                              <p className="text-base font-semibold text-cyan-400 sm:text-lg">
                                 Skwill AI
                               </p>
                               <p className="text-sm text-white/60">
@@ -845,14 +916,14 @@ export default function Home() {
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.6, delay: 0.2 }}
                           viewport={{ once: true }}
-                          className="glass-card p-6"
+                          className="glass-card p-4 sm:p-6"
                         >
                           <div className="mb-4 flex items-start justify-between">
                             <div>
-                              <h3 className="mb-2 text-2xl font-bold text-white">
+                              <h3 className="mb-2 text-xl font-bold text-white sm:text-2xl">
                                 Research Assistant – Data Analyst
                               </h3>
-                              <p className="text-lg font-semibold text-cyan-400">
+                              <p className="text-base font-semibold text-cyan-400 sm:text-lg">
                                 S P Jain School of Global Management
                               </p>
                               <p className="text-sm text-white/60">
@@ -924,7 +995,7 @@ export default function Home() {
                     </div>
 
                     {/* Projects Section */}
-                    <div>
+                    <div id="projects">
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -937,20 +1008,20 @@ export default function Home() {
                         </h2>
                       </motion.div>
 
-                      <div className="grid gap-4 md:grid-cols-2">
+                      <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
                         {/* AI-Powered Calendar Assistant */}
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6 }}
                           viewport={{ once: true }}
-                          className="glass-card group p-4 transition-transform duration-300 hover:scale-105"
+                          className="glass-card group p-3 transition-transform duration-300 hover:scale-105 sm:p-4"
                         >
                           {/* <div className="mb-2 text-2xl">📅</div> */}
-                          <h3 className="mb-2 text-lg font-bold text-white">
+                          <h3 className="mb-2 text-sm font-bold text-white sm:text-base lg:text-lg">
                             AI-Powered Calendar Assistant
                           </h3>
-                          <p className="mb-3 text-sm text-white/80">
+                          <p className="mb-3 text-xs text-white/80 sm:text-sm">
                             Developed a full-stack conversational assistant
                             enabling natural-language scheduling and event
                             queries with Google Calendar integration and web
@@ -985,13 +1056,13 @@ export default function Home() {
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6, delay: 0.1 }}
                           viewport={{ once: true }}
-                          className="glass-card group p-4 transition-transform duration-300 hover:scale-105"
+                          className="glass-card group p-3 transition-transform duration-300 hover:scale-105 sm:p-4"
                         >
                           {/* <div className="mb-2 text-2xl">📊</div> */}
-                          <h3 className="mb-2 text-lg font-bold text-white">
+                          <h3 className="mb-2 text-sm font-bold text-white sm:text-base lg:text-lg">
                             Airtable Clone
                           </h3>
-                          <p className="mb-3 text-sm text-white/80">
+                          <p className="mb-3 text-xs text-white/80 sm:text-sm">
                             Built a production-grade Airtable-style grid with
                             virtualized infinite scroll, supporting 100k+ rows
                             with dynamic columns, filtering, and real-time
@@ -1024,13 +1095,13 @@ export default function Home() {
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6 }}
                           viewport={{ once: true }}
-                          className="glass-card group p-4 transition-transform duration-300 hover:scale-105"
+                          className="glass-card group p-3 transition-transform duration-300 hover:scale-105 sm:p-4"
                         >
                           {/* <div className="mb-2 text-2xl">🔢</div> */}
-                          <h3 className="mb-2 text-lg font-bold text-white">
+                          <h3 className="mb-2 text-sm font-bold text-white sm:text-base lg:text-lg">
                             AI Digit Recognition
                           </h3>
-                          <p className="mb-3 text-sm text-white/80">
+                          <p className="mb-3 text-xs text-white/80 sm:text-sm">
                             Created an AI tool for digit recognition using CNN
                             trained on MNIST dataset with 95% accuracy.
                           </p>
@@ -1057,13 +1128,13 @@ export default function Home() {
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6, delay: 0.1 }}
                           viewport={{ once: true }}
-                          className="glass-card group p-4 transition-transform duration-300 hover:scale-105"
+                          className="glass-card group p-3 transition-transform duration-300 hover:scale-105 sm:p-4"
                         >
                           {/* <div className="mb-2 text-2xl">🎓</div> */}
-                          <h3 className="mb-2 text-lg font-bold text-white">
+                          <h3 className="mb-2 text-sm font-bold text-white sm:text-base lg:text-lg">
                             University Enrollment System
                           </h3>
-                          <p className="mb-3 text-sm text-white/80">
+                          <p className="mb-3 text-xs text-white/80 sm:text-sm">
                             Designed a relational database with procedures,
                             views, triggers to manage enrollments & capacity.
                           </p>
@@ -1092,13 +1163,13 @@ export default function Home() {
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6, delay: 0.2 }}
                           viewport={{ once: true }}
-                          className="glass-card group p-4 transition-transform duration-300 hover:scale-105"
+                          className="glass-card group p-3 transition-transform duration-300 hover:scale-105 sm:p-4"
                         >
                           {/* <div className="mb-2 text-2xl">⚽</div> */}
-                          <h3 className="mb-2 text-lg font-bold text-white">
+                          <h3 className="mb-2 text-sm font-bold text-white sm:text-base lg:text-lg">
                             Sports Analytics Database
                           </h3>
-                          <p className="mb-3 text-sm text-white/80">
+                          <p className="mb-3 text-xs text-white/80 sm:text-sm">
                             Built NoSQL database for 6 European leagues with 5
                             interconnected collections and 1,900+ shot events.
                           </p>
@@ -1123,13 +1194,13 @@ export default function Home() {
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6, delay: 0.3 }}
                           viewport={{ once: true }}
-                          className="glass-card group p-4 transition-transform duration-300 hover:scale-105"
+                          className="glass-card group p-3 transition-transform duration-300 hover:scale-105 sm:p-4"
                         >
                           {/* <div className="mb-2 text-2xl">⚡</div> */}
-                          <h3 className="mb-2 text-lg font-bold text-white">
+                          <h3 className="mb-2 text-sm font-bold text-white sm:text-base lg:text-lg">
                             Energy Usage Prediction
                           </h3>
-                          <p className="mb-3 text-sm text-white/80">
+                          <p className="mb-3 text-xs text-white/80 sm:text-sm">
                             Built ML pipeline for steel industry energy usage,
                             achieving MSE 5.5 with RandomForest.
                           </p>
@@ -1160,19 +1231,19 @@ export default function Home() {
           </div>
 
           {/* Contact Section */}
-          <section id="contact" className="px-6 py-20">
+          <section id="contact" className="px-4 py-16 sm:px-6 sm:py-20">
             <div className="mx-auto max-w-4xl">
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="mb-16 text-center"
+                className="mb-12 text-center sm:mb-16"
               >
-                <h2 className="mb-6 text-4xl font-bold text-white lg:text-6xl">
+                <h2 className="mb-4 text-2xl font-bold text-white sm:mb-6 sm:text-3xl lg:text-4xl xl:text-6xl">
                   Let&apos;s Connect
                 </h2>
-                <p className="mx-auto max-w-3xl text-xl text-white/80">
+                <p className="mx-auto max-w-3xl text-base text-white/80 sm:text-lg lg:text-xl">
                   Ready to turn data into insights? Let&apos;s build something
                   amazing together! 🐈‍
                 </p>
@@ -1183,11 +1254,11 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="glass-card p-8"
+                className="glass-card p-4 sm:p-8"
               >
-                <div className="grid gap-8 md:grid-cols-2">
+                <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
                   <div>
-                    <h3 className="mb-6 text-2xl font-bold text-white">
+                    <h3 className="mb-4 text-lg font-bold text-white sm:mb-6 sm:text-xl lg:text-2xl">
                       Get In Touch
                     </h3>
                     <div className="space-y-4">
