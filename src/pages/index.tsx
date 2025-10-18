@@ -303,7 +303,7 @@ export default function Home() {
                         >
                           <div className="mb-4 flex items-center gap-3">
                             <Server className="h-6 w-6 text-blue-400 sm:h-8 sm:w-8" />
-                            <h3 className="sm:text-md text-sm font-bold text-white">
+                            <h3 className="text-md font-bold text-white md:text-sm">
                               Data Engineering
                             </h3>
                           </div>
@@ -352,7 +352,7 @@ export default function Home() {
                         >
                           <div className="flex items-center gap-2 p-4 pb-2 sm:p-5">
                             <BarChart3 className="h-8 w-8 text-green-400 sm:h-12 sm:w-12" />
-                            <h3 className="sm:text-md text-sm font-bold text-white">
+                            <h3 className="text-md font-bold text-white sm:text-sm">
                               Analytics & Visualization
                             </h3>
                           </div>
@@ -372,7 +372,7 @@ export default function Home() {
                             </div>
 
                             {/* Bar chart container */}
-                            <div className="relative flex h-full w-full items-end justify-center gap-0 px-8 sm:px-17">
+                            <div className="relative flex h-full w-full items-end justify-center gap-2 px-8 sm:gap-0 sm:px-17">
                               {[
                                 {
                                   skill: "Power BI",
@@ -416,7 +416,7 @@ export default function Home() {
 
                                     {/* Animated bar */}
                                     <motion.div
-                                      className={`w-full max-w-[12px] rounded-t bg-gradient-to-t sm:max-w-[16px] ${bar.color}`}
+                                      className={`w-full max-w-[16px] rounded-t bg-gradient-to-t sm:max-w-[16px] ${bar.color}`}
                                       style={{ height: "100%" }}
                                       initial={{ height: 0 }}
                                       whileInView={{
@@ -460,12 +460,12 @@ export default function Home() {
                       >
                         <div className="mb-4 flex items-center gap-3">
                           <Cpu className="h-6 w-6 text-purple-400 sm:h-7 sm:w-7" />
-                          <h3 className="text-sm font-bold text-white sm:text-lg">
+                          <h3 className="text-md font-bold text-white sm:text-lg md:text-sm">
                             AI & Machine Learning
                           </h3>
                         </div>
                         <div className="m-0 flex items-center justify-center">
-                          <div className="relative m-0 h-60 w-80 sm:h-70 sm:w-96">
+                          <div className="relative m-0 h-80 w-80 sm:h-70 sm:w-96">
                             <svg
                               className="h-full w-full"
                               viewBox="0 0 240 240"
@@ -613,7 +613,7 @@ export default function Home() {
                                   </motion.text>
                                   <motion.text
                                     x={point.labelX}
-                                    y={point.labelY + 13}
+                                    y={point.labelY + 14}
                                     textAnchor="middle"
                                     className="fill-purple-400 text-xs"
                                     initial={{ opacity: 0 }}
@@ -633,10 +633,10 @@ export default function Home() {
                             {/* Skill labels around radar */}
                             <div className="absolute inset-0 flex items-center justify-center">
                               <div className="text-center">
-                                <div className="mb-2 text-sm font-semibold text-white">
+                                <div className="mb-2 text-base font-semibold text-white sm:text-sm">
                                   AI & ML
                                 </div>
-                                <div className="text-xs text-white/60">
+                                <div className="text-sm text-white/60 sm:text-xs">
                                   Proficiency Levels
                                 </div>
                               </div>
