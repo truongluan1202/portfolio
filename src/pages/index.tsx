@@ -255,6 +255,14 @@ export default function Home() {
                         >
                           <Github className="h-5 w-5" />
                         </motion.a>
+                        <motion.a
+                          href="https://public.tableau.com/app/profile/dinh.truong.luan.tran"
+                          target="_blank"
+                          className="glass-icon-button"
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                        >
+                          <BarChart3 className="h-5 w-5" />
+                        </motion.a>
                       </div>
                       <div className="mt-6 flex gap-3">
                         <motion.a
@@ -809,6 +817,14 @@ export default function Home() {
                         whileHover={{ scale: 1.1, rotate: -5 }}
                       >
                         <Github className="h-6 w-6" />
+                      </motion.a>
+                      <motion.a
+                        href="https://public.tableau.com/app/profile/your-profile"
+                        target="_blank"
+                        className="glass-icon-button"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                      >
+                        <BarChart3 className="h-6 w-6" />
                       </motion.a>
                     </div>
                   </div>
