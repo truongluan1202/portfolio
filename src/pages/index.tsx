@@ -783,7 +783,7 @@ export default function Home() {
                         <Github className="h-6 w-6" />
                       </motion.a>
                       <motion.a
-                        href="https://public.tableau.com/app/profile/your-profile"
+                        href="https://public.tableau.com/app/profile/dinh.truong.luan.tran"
                         target="_blank"
                         className="glass-icon-button"
                         whileHover={{ scale: 1.1, rotate: 5 }}
