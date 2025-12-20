@@ -14,8 +14,6 @@ import {
   Sparkles,
   Download,
   Code,
-  Server,
-  Cpu,
   Menu,
   X,
 } from "lucide-react";
@@ -264,7 +262,7 @@ export default function Home() {
                           <BarChart3 className="h-5 w-5" />
                         </motion.a>
                       </div>
-                      <div className="mt-6 flex gap-3">
+                      <div className="mt-6 flex justify-center gap-3">
                         <motion.a
                           href="#contact"
                           className="glass-button-primary text-sm"
@@ -300,9 +298,9 @@ export default function Home() {
                         </h2>
                       </div>
 
-                      {/* First Row - Data Engineering & Analytics */}
-                      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                        {/* Data Engineering - Horizontal Bars */}
+                      {/* Visual Analytics - Core Skills */}
+                      <div className="space-y-6">
+                        {/* Data Engineering - Progress Bars */}
                         <motion.div
                           initial={{ opacity: 0, y: 30 }}
                           whileInView={{ opacity: 1, y: 0 }}
@@ -311,17 +309,18 @@ export default function Home() {
                           className="glass-card p-5"
                         >
                           <div className="mb-4 flex items-center gap-3">
-                            <Server className="h-6 w-6 text-blue-400 sm:h-8 sm:w-8" />
+                            <Database className="h-6 w-6 text-blue-400 sm:h-8 sm:w-8" />
                             <h3 className="text-md font-bold text-white md:text-sm">
-                              Data Engineering
+                              Core Data Engineering
                             </h3>
                           </div>
                           <div className="space-y-3">
                             {[
-                              { skill: "Python", level: 95 },
-                              { skill: "SQL", level: 90 },
-                              { skill: "Airflow", level: 80 },
-                              { skill: "Snowflake", level: 85 },
+                              { skill: "Databricks", level: 88 },
+                              { skill: "BigQuery", level: 85 },
+                              { skill: "Airflow", level: 88 },
+                              { skill: "Snowflake", level: 87 },
+                              { skill: "dbt", level: 86 },
                             ].map((item, index) => (
                               <div key={index}>
                                 <div className="mb-1 flex justify-between text-sm">
@@ -337,7 +336,7 @@ export default function Home() {
                                     className="glass-progress-fill bg-gradient-to-r from-blue-400 to-blue-600"
                                     initial={{ width: 0 }}
                                     whileInView={{
-                                      width: `${60 + (item.level - 80) * 2}%`,
+                                      width: `${item.level}%`,
                                     }}
                                     transition={{
                                       duration: 1,
@@ -351,169 +350,62 @@ export default function Home() {
                           </div>
                         </motion.div>
 
-                        {/* Analytics & Visualization - Line Graph */}
+                        {/* Analytics & Visualization - Radar Chart */}
                         <motion.div
                           initial={{ opacity: 0, y: 30 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6, delay: 0.1 }}
                           viewport={{ once: true }}
-                          className="glass-card"
+                          className="glass-card p-5 pb-0"
                         >
-                          <div className="flex items-center gap-2 p-4 pb-2 sm:p-5">
-                            <BarChart3 className="h-8 w-8 text-green-400 sm:h-12 sm:w-12" />
-                            <h3 className="text-md font-bold text-white sm:text-sm">
+                          <div className="mb-4 flex items-center gap-3">
+                            <BarChart3 className="h-6 w-6 text-green-400 sm:h-8 sm:w-8" />
+                            <h3 className="text-md font-bold text-white sm:text-lg md:text-sm">
                               Analytics & Visualization
                             </h3>
                           </div>
-                          <div className="relative h-40 overflow-hidden p-1 sm:h-50">
-                            {/* Grid background */}
-                            <div className="absolute inset-0 p-0 opacity-20">
-                              <div
-                                className="h-full w-full p-0"
-                                style={{
-                                  backgroundImage: `
-                                    linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                                    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-                                  `,
-                                  backgroundSize: "20px 20px",
-                                }}
-                              />
-                            </div>
-
-                            {/* Bar chart container */}
-                            <div className="relative flex h-full w-full items-end justify-center gap-2 px-8 sm:gap-0 sm:px-17">
-                              {[
-                                {
-                                  skill: "Power BI",
-                                  level: 95,
-                                  color: "from-green-500 to-green-400",
-                                },
-                                {
-                                  skill: "Tableau",
-                                  level: 85,
-                                  color: " from-emerald-500 to-emerald-400",
-                                },
-                                {
-                                  skill: "Matplotlib",
-                                  level: 90,
-                                  color: "from-green-500 to-green-400",
-                                },
-                                {
-                                  skill: "R",
-                                  level: 80,
-                                  color: "from-emerald-500 to-emerald-400",
-                                },
-                              ].map((bar, index) => (
-                                <div
-                                  key={index}
-                                  className="h-full w-full gap-0"
-                                >
-                                  <div className="flex h-20 w-full flex-col items-center justify-end sm:h-27">
-                                    {/* Percentage label */}
-                                    <motion.div
-                                      className="mb-1 text-xs font-semibold text-green-400"
-                                      initial={{ opacity: 0 }}
-                                      whileInView={{ opacity: 1 }}
-                                      transition={{
-                                        duration: 0.5,
-                                        delay: 1.2 + index * 0.2,
-                                      }}
-                                      viewport={{ once: true }}
-                                    >
-                                      {bar.level}%
-                                    </motion.div>
-
-                                    {/* Animated bar */}
-                                    <motion.div
-                                      className={`w-full max-w-[16px] rounded-t bg-gradient-to-t sm:max-w-[16px] ${bar.color}`}
-                                      style={{ height: "100%" }}
-                                      initial={{ height: 0 }}
-                                      whileInView={{
-                                        height: `${40 + (bar.level - 80) * 3}%`,
-                                      }}
-                                      transition={{
-                                        duration: 1.5,
-                                        delay: index * 0.2,
-                                        ease: "easeOut",
-                                      }}
-                                      viewport={{ once: true }}
-                                    />
-                                  </div>
-                                  {/* Skill label */}
-                                  <motion.div
-                                    className="mt-5 ml-4 flex w-8 origin-center -rotate-90 transform justify-end text-xs font-medium whitespace-nowrap text-white/80 sm:mt-6 sm:ml-0 sm:w-11"
-                                    initial={{ opacity: 0 }}
-                                    whileInView={{ opacity: 1 }}
-                                    transition={{
-                                      duration: 0.5,
-                                      delay: 1 + index * 0.2,
-                                    }}
-                                    viewport={{ once: true }}
+                          <div className="m-0 flex items-center justify-center">
+                            <div className="relative m-0 h-80 w-80 sm:h-70 sm:w-96">
+                              <svg
+                                className="h-full w-full"
+                                viewBox="0 0 240 240"
+                              >
+                                {/* Radar chart background */}
+                                <defs>
+                                  <radialGradient
+                                    id="analyticsRadarGradient"
+                                    cx="50%"
+                                    cy="50%"
+                                    r="50%"
                                   >
-                                    {bar.skill}
-                                  </motion.div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </motion.div>
-                      </div>
+                                    <stop
+                                      offset="0%"
+                                      stopColor="rgba(34, 197, 94, 0.1)"
+                                    />
+                                    <stop
+                                      offset="100%"
+                                      stopColor="rgba(34, 197, 94, 0.3)"
+                                    />
+                                  </radialGradient>
+                                </defs>
 
-                      {/* Second Row - AI & Machine Learning - Radar Chart */}
-                      <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        viewport={{ once: true }}
-                        className="glass-card p-5 pb-0"
-                      >
-                        <div className="mb-4 flex items-center gap-3">
-                          <Cpu className="h-6 w-6 text-purple-400 sm:h-7 sm:w-7" />
-                          <h3 className="text-md font-bold text-white sm:text-lg md:text-sm">
-                            AI & Machine Learning
-                          </h3>
-                        </div>
-                        <div className="m-0 flex items-center justify-center">
-                          <div className="relative m-0 h-80 w-80 sm:h-70 sm:w-96">
-                            <svg
-                              className="h-full w-full"
-                              viewBox="0 0 240 240"
-                            >
-                              {/* Radar chart background */}
-                              <defs>
-                                <radialGradient
-                                  id="radarGradient"
-                                  cx="50%"
-                                  cy="50%"
-                                  r="50%"
-                                >
-                                  <stop
-                                    offset="0%"
-                                    stopColor="rgba(168, 85, 247, 0.1)"
-                                  />
-                                  <stop
-                                    offset="100%"
-                                    stopColor="rgba(168, 85, 247, 0.3)"
-                                  />
-                                </radialGradient>
-                              </defs>
+                                {/* Grid circles */}
+                                {[0.2, 0.4, 0.6, 0.8, 1.0].map(
+                                  (scale, index) => (
+                                    <circle
+                                      key={index}
+                                      cx="120"
+                                      cy="120"
+                                      r={80 * scale}
+                                      fill="none"
+                                      stroke="rgba(255,255,255,0.1)"
+                                      strokeWidth="1"
+                                    />
+                                  ),
+                                )}
 
-                              {/* Grid circles */}
-                              {[0.2, 0.4, 0.6, 0.8, 1.0].map((scale, index) => (
-                                <circle
-                                  key={index}
-                                  cx="120"
-                                  cy="120"
-                                  r={80 * scale}
-                                  fill="none"
-                                  stroke="rgba(255,255,255,0.1)"
-                                  strokeWidth="1"
-                                />
-                              ))}
-
-                              {/* Grid lines */}
-                              {[0, 60, 120, 180, 240, 300].map(
-                                (angle, index) => (
+                                {/* Grid lines */}
+                                {[0, 72, 144, 216, 288].map((angle, index) => (
                                   <line
                                     key={index}
                                     x1="120"
@@ -529,129 +421,201 @@ export default function Home() {
                                     stroke="rgba(255,255,255,0.1)"
                                     strokeWidth="1"
                                   />
-                                ),
-                              )}
+                                ))}
 
-                              {/* Radar chart data */}
-                              <motion.polygon
-                                fill="url(#radarGradient)"
-                                stroke="#a855f7"
-                                strokeWidth="2"
-                                points="120,40 180,80 160,160 80,160 60,80"
-                                initial={{ pathLength: 0, opacity: 0 }}
-                                whileInView={{ pathLength: 1, opacity: 1 }}
-                                transition={{ duration: 2, delay: 0.5 }}
-                                viewport={{ once: true }}
-                              />
+                                {/* Radar chart polygon */}
+                                <motion.polygon
+                                  fill="url(#analyticsRadarGradient)"
+                                  stroke="#22c55e"
+                                  strokeWidth="2"
+                                  points={(() => {
+                                    const skills = [
+                                      { angle: 0, level: 95 },
+                                      { angle: 72, level: 90 },
+                                      { angle: 144, level: 88 },
+                                      { angle: 216, level: 85 },
+                                      { angle: 288, level: 98 },
+                                    ];
+                                    return skills
+                                      .map((s) => {
+                                        const radius = (80 * s.level) / 100;
+                                        const x =
+                                          120 +
+                                          radius *
+                                            Math.cos((s.angle * Math.PI) / 180);
+                                        const y =
+                                          120 +
+                                          radius *
+                                            Math.sin((s.angle * Math.PI) / 180);
+                                        return `${x},${y}`;
+                                      })
+                                      .join(" ");
+                                  })()}
+                                  initial={{ pathLength: 0, opacity: 0 }}
+                                  whileInView={{ pathLength: 1, opacity: 1 }}
+                                  transition={{ duration: 2, delay: 0.5 }}
+                                  viewport={{ once: true }}
+                                />
 
-                              {/* Data points */}
-                              {[
-                                {
-                                  x: 120,
-                                  y: 40,
-                                  skill: "Scikit-learn",
-                                  level: 95,
-                                  labelX: 120,
-                                  labelY: 20,
-                                },
-                                {
-                                  x: 180,
-                                  y: 80,
-                                  skill: "PyTorch",
-                                  level: 85,
-                                  labelX: 210,
-                                  labelY: 80,
-                                },
-                                {
-                                  x: 160,
-                                  y: 160,
-                                  skill: "Langchain",
-                                  level: 80,
-                                  labelX: 175,
-                                  labelY: 190,
-                                },
-                                {
-                                  x: 80,
-                                  y: 160,
-                                  skill: "Hugging Face",
-                                  level: 75,
-                                  labelX: 50,
-                                  labelY: 190,
-                                },
-                                {
-                                  x: 60,
-                                  y: 80,
-                                  skill: "MLflow",
-                                  level: 90,
-                                  labelX: 30,
-                                  labelY: 80,
-                                },
-                              ].map((point, index) => (
-                                <g key={index}>
-                                  <motion.circle
-                                    cx={point.x}
-                                    cy={point.y}
-                                    r="4"
-                                    fill="#a855f7"
-                                    initial={{ scale: 0 }}
-                                    whileInView={{ scale: 1 }}
-                                    transition={{
-                                      duration: 0.5,
-                                      delay: 1 + index * 0.1,
-                                    }}
-                                    viewport={{ once: true }}
-                                  />
-                                  <motion.text
-                                    x={point.labelX}
-                                    y={point.labelY}
-                                    textAnchor="middle"
-                                    className="fill-white/80 text-xs"
-                                    initial={{ opacity: 0 }}
-                                    whileInView={{ opacity: 1 }}
-                                    transition={{
-                                      duration: 0.5,
-                                      delay: 1.5 + index * 0.1,
-                                    }}
-                                    viewport={{ once: true }}
-                                  >
-                                    {point.skill === "Scikit-learn"
-                                      ? "Sklearn"
-                                      : point.skill === "Hugging Face"
-                                        ? "Hugging Face"
-                                        : point.skill}
-                                  </motion.text>
-                                  <motion.text
-                                    x={point.labelX}
-                                    y={point.labelY + 14}
-                                    textAnchor="middle"
-                                    className="fill-purple-400 text-xs"
-                                    initial={{ opacity: 0 }}
-                                    whileInView={{ opacity: 1 }}
-                                    transition={{
-                                      duration: 0.5,
-                                      delay: 1.5 + index * 0.1,
-                                    }}
-                                    viewport={{ once: true }}
-                                  >
-                                    {point.level}%
-                                  </motion.text>
-                                </g>
-                              ))}
-                            </svg>
+                                {/* Data points */}
+                                {(() => {
+                                  const skills = [
+                                    {
+                                      angle: 0,
+                                      skill: "Power BI",
+                                      level: 95,
+                                    },
+                                    {
+                                      angle: 72,
+                                      skill: "R",
+                                      level: 90,
+                                    },
+                                    {
+                                      angle: 144,
+                                      skill: "Jira",
+                                      level: 88,
+                                    },
+                                    {
+                                      angle: 216,
+                                      skill: "Excel",
+                                      level: 85,
+                                    },
+                                    {
+                                      angle: 288,
+                                      skill: "Tableau",
+                                      level: 98,
+                                    },
+                                  ];
+                                  return skills.map((s) => {
+                                    const radius = (80 * s.level) / 100;
+                                    const x =
+                                      120 +
+                                      radius *
+                                        Math.cos((s.angle * Math.PI) / 180);
+                                    const y =
+                                      120 +
+                                      radius *
+                                        Math.sin((s.angle * Math.PI) / 180);
+                                    // Calculate label position: extend from center through point with offset
+                                    const labelOffset = 30;
+                                    const labelX =
+                                      120 +
+                                      (radius + labelOffset) *
+                                        Math.cos((s.angle * Math.PI) / 180);
+                                    const labelY =
+                                      120 +
+                                      (radius + labelOffset) *
+                                        Math.sin((s.angle * Math.PI) / 180);
+                                    return { x, y, labelX, labelY, ...s };
+                                  });
+                                })().map((point, index) => (
+                                  <g key={index}>
+                                    <motion.circle
+                                      cx={point.x}
+                                      cy={point.y}
+                                      r="4"
+                                      fill="#22c55e"
+                                      initial={{ scale: 0 }}
+                                      whileInView={{ scale: 1 }}
+                                      transition={{
+                                        duration: 0.5,
+                                        delay: 1 + index * 0.1,
+                                      }}
+                                      viewport={{ once: true }}
+                                    />
+                                    <motion.text
+                                      x={point.labelX}
+                                      y={point.labelY}
+                                      textAnchor="middle"
+                                      className="fill-white/80 text-xs"
+                                      initial={{ opacity: 0 }}
+                                      whileInView={{ opacity: 1 }}
+                                      transition={{
+                                        duration: 0.5,
+                                        delay: 1.5 + index * 0.1,
+                                      }}
+                                      viewport={{ once: true }}
+                                    >
+                                      {point.skill}
+                                    </motion.text>
+                                    <motion.text
+                                      x={point.labelX}
+                                      y={point.labelY + 14}
+                                      textAnchor="middle"
+                                      className="fill-green-400 text-xs"
+                                      initial={{ opacity: 0 }}
+                                      whileInView={{ opacity: 1 }}
+                                      transition={{
+                                        duration: 0.5,
+                                        delay: 1.5 + index * 0.1,
+                                      }}
+                                      viewport={{ once: true }}
+                                    >
+                                      {point.level}%
+                                    </motion.text>
+                                  </g>
+                                ))}
+                              </svg>
 
-                            {/* Skill labels around radar */}
-                            <div className="absolute inset-0 flex items-center justify-center">
-                              <div className="text-center">
-                                <div className="mb-2 text-base font-semibold text-white sm:text-sm">
-                                  AI & ML
-                                </div>
-                                <div className="text-sm text-white/60 sm:text-xs">
-                                  Proficiency Levels
+                              {/* Skill labels around radar */}
+                              <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="text-center">
+                                  <div className="mb-2 text-base font-semibold text-white sm:text-sm">
+                                    Analytics
+                                  </div>
+                                  <div className="text-sm text-white/60 sm:text-xs">
+                                    Proficiency Levels
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </motion.div>
+                      </div>
+
+                      {/* Complete Technology Stack */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        viewport={{ once: true }}
+                        className="flex flex-wrap gap-3"
+                      >
+                        {[
+                          "Python",
+                          "SQL",
+                          "PySpark",
+                          "PostgreSQL",
+                          "NoSQL",
+                          "MongoDB",
+                          "Spark SQL",
+                          "AWS",
+                          "GCP",
+                          "Docker",
+                          "CI/CD",
+                          "Apache Kafka",
+                          "SealSuite",
+                          "Git",
+                          "Scikit-learn",
+                          "Langchain",
+                          "Hugging Face",
+                          "MLflow",
+                          "PyTorch",
+                        ].map((skill, index) => (
+                          <motion.span
+                            key={skill}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{
+                              duration: 0.3,
+                              delay: index * 0.03,
+                            }}
+                            viewport={{ once: true }}
+                            className="glass-tag text-sm font-medium"
+                          >
+                            {skill}
+                          </motion.span>
+                        ))}
                       </motion.div>
                     </motion.div>
 

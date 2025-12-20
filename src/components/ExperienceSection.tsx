@@ -38,59 +38,66 @@ export default function ExperienceSection() {
           </div>
           <ul className="mb-4 list-disc space-y-2 pl-6 text-base leading-relaxed text-white/90">
             <li>
-              Built scalable{" "}
-              <span className="font-bold text-blue-400">pipelines</span> (Spark,
-              dbt, Airflow) processing{" "}
-              <span className="font-bold text-green-400">700K+</span> spatial
-              data into Snowflake
+              Worked closely with stakeholders, BD, telesales, and product teams
+              to define{" "}
+              <span className="font-bold text-blue-400">
+                KPIs and Tableau dashboards
+              </span>{" "}
+              tracking payment machine rollout, merchant{" "}
+              <span className="font-bold text-blue-400">
+                {" "}
+                acquisition and conversion{" "}
+              </span>{" "}
             </li>
             <li>
-              Segmented high-value regions and tiered hotspots using{" "}
+              Consolidated{" "}
               <span className="font-bold text-blue-400">
-                Power BI, ArcGIS, and Mapbox
+                multi-source sales and marketing data
+              </span>{" "}
+              into a single analytics layer for funnel, regional, and customer
+              journey analysis
+            </li>
+            <li>
+              Built{" "}
+              <span className="font-bold text-blue-400">
+                analytics pipelines
+              </span>{" "}
+              using dbt and Airflow, with Snowflake as the warehouse and
+              Databricks for scalable spatial processing, covering{" "}
+              <span className="font-bold text-green-400">1M+</span> merchant
+              records
+            </li>
+            <li>
+              Mapped BD workflows, identified drop-offs across the outreach
+              process, and supported{" "}
+              <span className="font-bold text-blue-400">
+                A/B testing and UAT validation
               </span>
-            </li>
-            <li>
-              Built a{" "}
-              <span className="font-bold text-blue-400">
-                tracking dashboard
-              </span>{" "}
-              to monitor funnel performance, identify drop-offs, and analyse
-              tier-level behaviour
-            </li>
-            <li>
-              Recommended{" "}
-              <span className="font-bold text-blue-400">
-                targeted strategies
-              </span>{" "}
-              for each tier based on spatial density and conversion patterns
-            </li>
-            <li>
-              Tested outreach strategies using{" "}
-              <span className="font-bold text-blue-400">A/B testing</span>
             </li>
           </ul>
           <div className="mb-3 flex flex-wrap gap-2">
-            <span className="glass-tag text-sm font-medium">Spark</span>
+            <span className="glass-tag text-sm font-medium">Tableau</span>
             <span className="glass-tag text-sm font-medium">dbt</span>
             <span className="glass-tag text-sm font-medium">Airflow</span>
             <span className="glass-tag text-sm font-medium">Snowflake</span>
-            <span className="glass-tag text-sm font-medium">Power BI</span>
-            <span className="glass-tag text-sm font-medium">ArcGIS</span>
-            <span className="glass-tag text-sm font-medium">Mapbox</span>
+            <span className="glass-tag text-sm font-medium">Databricks</span>
+            <span className="glass-tag text-sm font-medium">Analytics</span>
+            <span className="glass-tag text-sm font-medium">A/B Testing</span>
           </div>
           <div className="grid gap-3 md:grid-cols-3">
             <div className="glass-stat">
-              <div className="text-xl font-bold text-green-400">700K+</div>
-              <div className="text-sm text-white/70">Spatial Data Points</div>
+              <div className="text-xl font-bold text-green-400">1M+</div>
+              <div className="text-sm text-white/70">Merchant Records</div>
             </div>
             <div className="glass-stat">
-              <div className="text-xl font-bold text-blue-400">Tiered</div>
-              <div className="text-sm text-white/70">Hotspot Analysis</div>
+              <div className="text-xl font-bold text-blue-400">
+                Multi-Source
+              </div>
+              <div className="text-sm text-white/70">Data Consolidation</div>
             </div>
             <div className="glass-stat">
               <div className="text-xl font-bold text-purple-400">A/B</div>
-              <div className="text-sm text-white/70">Testing</div>
+              <div className="text-sm text-white/70">Testing & UAT</div>
             </div>
           </div>
         </motion.div>
@@ -122,19 +129,19 @@ export default function ExperienceSection() {
               dbt, Airflow, Snowflake) for healthcare robotics data
             </li>
             <li>
-              Automated{" "}
+              Automated ingestion and{" "}
               <span className="font-bold text-blue-400">
-                multi-source ingestion & transformation
+                SQL aggregations, joins, and feature tables,
               </span>{" "}
-              with optimised SQL, cutting latency{" "}
+              reducing data latency by{" "}
               <span className="font-bold text-green-400">45%</span>
             </li>
             <li>
               Added{" "}
               <span className="font-bold text-blue-400">
-                dbt tests & monitoring
-              </span>
-              , reducing manual QA{" "}
+                dbt tests & monitoring, freshness checks
+              </span>{" "}
+              reducing manual QA{" "}
               <span className="font-bold text-green-400">60%</span>
             </li>
           </ul>
@@ -144,6 +151,7 @@ export default function ExperienceSection() {
             <span className="glass-tag text-sm font-medium">Snowflake</span>
             <span className="glass-tag text-sm font-medium">ELT</span>
             <span className="glass-tag text-sm font-medium">SQL</span>
+            <span className="glass-tag text-sm font-medium">Monitoring</span>
           </div>
           <div className="grid gap-3 md:grid-cols-3">
             <div className="glass-stat">
@@ -156,72 +164,9 @@ export default function ExperienceSection() {
             </div>
             <div className="glass-stat">
               <div className="text-xl font-bold text-purple-400">
-                Multi-Source
+                Healthcare
               </div>
-              <div className="text-sm text-white/70">Data Pipeline</div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Research Assistant - S P Jain */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="glass-card p-4 sm:p-6"
-        >
-          <div className="mb-4 flex items-start justify-between">
-            <div>
-              <h3 className="mb-2 text-xl font-bold text-white sm:text-2xl">
-                Research Assistant
-              </h3>
-              <p className="text-base font-semibold text-cyan-400 sm:text-lg">
-                S P Jain School of Global Management (Prof. Bilal Bahaa Zaidan)
-              </p>
-              <p className="text-sm text-white/60">Sydney, Australia</p>
-              <p className="text-sm text-white/60">01/2025 - 05/2025</p>
-            </div>
-          </div>
-          <ul className="mb-4 list-disc space-y-2 pl-6 text-base leading-relaxed text-white/90">
-            <li>
-              Engineered{" "}
-              <span className="font-bold text-blue-400">ML data pipeline</span>{" "}
-              for fall-risk detection,{" "}
-              <span className="font-bold text-green-400">RMSE 2.35</span>,
-              improved accuracy{" "}
-              <span className="font-bold text-green-400">15%</span>
-            </li>
-            <li>
-              Applied{" "}
-              <span className="font-bold text-blue-400">
-                SHAP & k-fold validation
-              </span>{" "}
-              for explainable performance
-            </li>
-          </ul>
-          <div className="mb-3 flex flex-wrap gap-2">
-            <span className="glass-tag text-sm font-medium">
-              Machine Learning
-            </span>
-            <span className="glass-tag text-sm font-medium">SHAP</span>
-            <span className="glass-tag text-sm font-medium">k-fold</span>
-            <span className="glass-tag text-sm font-medium">Data Pipeline</span>
-          </div>
-          <div className="grid gap-3 md:grid-cols-3">
-            <div className="glass-stat">
-              <div className="text-xl font-bold text-green-400">RMSE 2.35</div>
-              <div className="text-sm text-white/70">Model Performance</div>
-            </div>
-            <div className="glass-stat">
-              <div className="text-xl font-bold text-blue-400">15%</div>
-              <div className="text-sm text-white/70">Accuracy Improvement</div>
-            </div>
-            <div className="glass-stat">
-              <div className="text-xl font-bold text-purple-400">
-                Explainable
-              </div>
-              <div className="text-sm text-white/70">ML Pipeline</div>
+              <div className="text-sm text-white/70">Robotics Data</div>
             </div>
           </div>
         </motion.div>
@@ -230,7 +175,7 @@ export default function ExperienceSection() {
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
           className="glass-card p-4 sm:p-6"
         >
@@ -248,49 +193,50 @@ export default function ExperienceSection() {
           </div>
           <ul className="mb-4 list-disc space-y-2 pl-6 text-base leading-relaxed text-white/90">
             <li>
-              Built an{" "}
+              Led a team to build an{" "}
               <span className="font-bold text-blue-400">
-                agentic reporting pipeline
+                agentic reporting RAG model
               </span>{" "}
-              using RAG, GPT-4o API to generate insights from customer logs
+              with <span className="font-bold text-blue-400">GPT-4o</span>{" "}
+              generating automated insights on CPC, CTR, conversion trends, and
+              customer behaviour
             </li>
             <li>
-              Implemented{" "}
+              Developed scalable{" "}
               <span className="font-bold text-blue-400">
-                vector retrieval and scalable ETL flows
-              </span>{" "}
-              for fast log indexing
+                ETL pipelines for high-volume marketing logs
+              </span>
+              , enabling fast campaign and funnel analysis
             </li>
             <li>
               Automated{" "}
               <span className="font-bold text-blue-400">
-                end-to-end data processing
-              </span>
-              , improving reporting speed and reducing manual work
+                multi-channel data into dashboards
+              </span>{" "}
+              for ROI and attribution reporting
             </li>
           </ul>
           <div className="mb-3 flex flex-wrap gap-2">
             <span className="glass-tag text-sm font-medium">RAG</span>
             <span className="glass-tag text-sm font-medium">GPT-4o</span>
-            <span className="glass-tag text-sm font-medium">
-              Vector Retrieval
-            </span>
             <span className="glass-tag text-sm font-medium">ETL</span>
+            <span className="glass-tag text-sm font-medium">Dashboards</span>
+            <span className="glass-tag text-sm font-medium">ROI</span>
           </div>
           <div className="grid gap-3 md:grid-cols-3">
             <div className="glass-stat">
               <div className="text-xl font-bold text-green-400">Agentic</div>
-              <div className="text-sm text-white/70">Reporting Pipeline</div>
+              <div className="text-sm text-white/70">RAG Model</div>
             </div>
             <div className="glass-stat">
-              <div className="text-xl font-bold text-blue-400">Vector</div>
-              <div className="text-sm text-white/70">Retrieval</div>
+              <div className="text-xl font-bold text-blue-400">High-Volume</div>
+              <div className="text-sm text-white/70">ETL Pipelines</div>
             </div>
             <div className="glass-stat">
               <div className="text-xl font-bold text-purple-400">
-                End-to-End
+                Multi-Channel
               </div>
-              <div className="text-sm text-white/70">Automation</div>
+              <div className="text-sm text-white/70">Dashboards</div>
             </div>
           </div>
         </motion.div>
